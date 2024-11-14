@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | Chai aur Code</title>
+    <style>
+        body{
+            background-color: #212121;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thrusday</div>
+    </div>
+</body>
+<script>
+    const parent = document.querySelector('.parent')
+    console.log(parent);
+
+    // if you want children of the parent class or div
+    console.log(parent.children);
+
+    // you can access one element by using index number
+    console.log(parent.children[1].innerHTML);
+    
+    for(let i=0; i<parent.children.length; i++)
+    {
+        console.log(parent.children[i].innerHTML);
+    }
+
+    for(let i=0; i<parent.children.length; i++)
+    {
+        parent.children[i].style.color='red';
+    }
+
+    // we can access firstElementChild as well as lastElementChild
+    parent.firstElementChild.style.color='blue'
+    parent.lastElementChild.style.color='white'
+
+
+    // Note:- if you want to select first child element or very first element 
+    const firstDay = document.querySelector('.day')
+    firstDay.style.backgroundColor = 'white'
+
+    // if you want to know the parent of the child element then
+    console.log(firstDay.parentElement);
+
+    // we can also find out the next sibling element
+    console.log(firstDay.nextElementSibling);
+    firstDay.nextElementSibling.style.backgroundColor = 'blue'
+
+
+    // Very IMPORTANT :- nodeList
+    console.log("NODES:- ",parent.childNodes);
+
+
+    // how to create new element
+    const div = document.createElement('div')   // we have to specify element in bracket like 'div' or 'h1' or any thing else 
+    console.log(div);
+    div.className = "main"
+    div.id = "myId"   // div.id first bring the original/old id and then rewrite/change the id to the new id
+    div.style.backgroundColor = 'red'   // sam as above comment
+    // so use div.set  it will direct rewrite/change the attribute
+    div.setAttribute("class","main1 main")  // note that if we again give extra class then it overright previous class and contain only new class to prevent from this add previous class also
+    div.setAttribute("title","generated title")
+    div.style.padding = "12px"
+    //div.innerHTML = "Chai aur Code" //  div.innerHTML first they bring original content and then rewrite the new content
+    // use document.createTextNode and append it to element instead of div.innerHTML refer above some comments for explanation
+    const addText = document.createTextNode("Chai aur Node")
+    div.append(addText)
+
+    // how to add created element:-
+    document.body.append(div)
+
+</script>
+</html>

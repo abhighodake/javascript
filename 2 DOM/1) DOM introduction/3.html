@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai aur code | DOM</title>
+</head>
+<body style="background-color: #212121; color:white;">
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+</body>
+
+<script>
+
+    // how to add new element with the help of function so that if we want to add multiple element we can add by calling function multiple time 
+    function addLanguage(langName){
+        const listItem = document.createElement('li')
+        listItem.innerHTML = langName   // when we used innerHTML we have to traverse whole parent element
+        document.querySelector('.language').appendChild(listItem)  // select parent element by using class
+    }
+    addLanguage("python")
+    addLanguage("CPP")
+
+    function addLanguageOptimizeWay(langName)
+    {
+        const li = document.createElement('li')
+        li.appendChild(document.createTextNode(langName))  // here insead of traversing we create new textNode and we directly append it
+        document.querySelector('.language').appendChild(li)
+    }
+    addLanguageOptimizeWay("GoLang")
+
+    //-----------------------------------------------------------------------------------------------------------------------------
+
+
+    // how to edit content of the element:-  (replace with new element is more optimeize way than innerHTML)
+    
+    const secondLi = document.querySelector("li:nth-child(2)")   // nth-child is used to select the tag of nth number
+    //secondLi.innerHTML = "Mojo"   NOTE:- it's not optimize way
+    const newli = document.createElement('li')
+    newli.textContent = "Mojo"
+    secondLi.replaceWith(newli)
+
+    // one more example replace 1st li i.e. javascript with typescript
+    const firstLi = document.querySelector("li:nth-child(1)")
+    //firstLi.innerHTML = 'TypeScript'  // Note:- not efficient way
+
+    // or
+
+    firstLi.outerHTML = '<li>TypeScript</li>'   // Note:- in outerHTML we have to give content in between opening tag and closing tag
+
+    /* const newLiFirst = document.createElement('li')
+    newLiFirst.textContent = 'TypeScript'
+    firstLi.replaceWith(newLiFirst) */
+
+
+
+    //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    // how to remove element
+    const lastLi = document.querySelector("li:nth-child(4)")
+    lastLi.remove()  // it will remove the element // here it will remove 4th list item i.e. GoLang
+
+
+</script>
+</html>

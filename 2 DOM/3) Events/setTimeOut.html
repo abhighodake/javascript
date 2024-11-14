@@ -1,0 +1,38 @@
+<!--  setTimeout()  and  clearTimeout() -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chai aur Code</h1>
+    <button id="stop">stop</button>
+</body>
+
+<script>
+
+    const sayMyName = function(){
+        console.log("Abhi");
+    }
+
+    // by this we can setTimeout and we have to pass two argumenents one is function callback or reference of the function and another is time in millisecomd
+    setTimeout(sayMyName ,2000)
+
+    const changeMe = ()=>{
+        document.querySelector("h1").innerHTML = "After timeout"
+    }
+  
+    const changeText = setTimeout(changeMe,2000)
+
+    const stop = document.querySelector("#stop").addEventListener('click', function(e){
+        clearTimeout(changeText)  // by this we can clearTimeout with the help of timeOut reference
+        console.log("Stopped");
+    })
+    
+
+
+</script>
+</html>

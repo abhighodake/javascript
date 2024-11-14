@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>API Request</h1>
+    <div class="container">
+        <img src="" alt="">
+    </div>
+</body>
+
+<script>
+
+
+    const requestURL = "https://api.github.com/users/hiteshchoudhary"
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET', requestURL)   // it does not call the request 
+    console.log("a",xhr.readyState);  // it give the current state
+    
+    // to track the state
+    xhr.onreadystatechange = function(){
+        console.log(xhr.readyState);
+        if(xhr.readyState === 4)
+        {
+            const data = JSON.parse(this.responseText)
+            console.log(typeof data);   // note:- this response text is in the form of string we have to convert it to object or JSON 
+            console.log(data.name);
+            console.log(data.avatar_url);
+            const ele = document.createElement("div")
+            ele.innerHTML = `<h1>${data.name}</h1>
+                                <img src="${data.avatar_url}" alt="">`
+            document.body.appendChild(ele)
+            ele.style.border = "2px,solid,black"
+        }
+    }
+
+    xhr.send()  // by this we have to call the request
+    
+</script>
+</html>

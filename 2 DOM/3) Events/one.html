@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>htnml Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+
+            <!-- 
+            Don't follow following approach of adding javascript in html tags instead used in proper js file while writing pure JS but if you are using react then you can follow this approach because react has separate library
+            
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" onclick="alert('owl')"></li>
+            -->
+
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+
+<script>
+
+    // Note:- Events in JS runs sequentially but there are some exception  asynch events which invoke in some activity like drag-drop, keyboard press, mouse click events and many more
+
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    // onclick vs addEventListner
+   
+    // note:- onlcik does not provide more functionality just used eventListener, eventListner provides propogation ability
+    /* document.getElementById("owl").onclick = function(){
+        alert("OWl Clicked")
+    }  */
+    // or you can use attachEvent()
+    // or jQuery - onEvent()
+
+    /*
+    document.getElementById("owl").addEventListener('click', ()=>{
+        alert("OWl event")
+    },false)    // addEventListener take three parameterters 1)event , 2)function , 3)true/false:-by default it is false
+    */
+   
+    //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    // event object
+
+    /*
+    document.getElementById("owl").addEventListener('click', function(e){
+        // here e is the event object we can use any parameter name instead of e
+        console.log(e);
+    },false)
+    */
+
+    // study the following event object
+    // type, timestamp, defaultPrevented, 
+    // target, toElement, srcElement, currentTarget,
+    // clientX, clientY, creenX, screenY
+    // altkey, ctrlkey, shiftkey, keyCode
+
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    // Event Propogation:- 
+
+    // true/false third parameter
+    // it is used for bublling the event or capturing the event
+
+    // false:- bubbling 
+    // bublling means:- first it execute inner element i.e. li event then outside i.e ul
+    // for bubbling :- false
+    
+    /*
+    document.getElementById("images").addEventListener('click', function(e){
+        console.log("clicked on ul");
+    }, false) // default false
+
+    document.getElementById("owl").addEventListener('click', function(e){
+        console.log(("owl clicked"));
+    })  // by default false
+    */
+
+
+    // true:- capturing mode
+    // capturing mode means:- first it execute outeside element event then ineer 
+    // for capturing :- true
+
+    /*
+    document.getElementById("images").addEventListener('click', function(e){
+        console.log("clicked on ul");
+    }, true) // default false
+
+    document.getElementById("owl").addEventListener('click', function(e){
+        console.log(("owl clicked"));
+    }, true)  // by default false
+    */
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    // stopPropogation:-
+    // if we don't want event bubbling i.e we want separate inner element event and separate outside element events then used event object to stopPropogation
+
+    document.getElementById("images").addEventListener('click', function(e){
+        console.log("clicked on ul");
+    }) // default false
+
+    document.getElementById("owl").addEventListener('click', function(e){
+        console.log(("owl clicked"));
+        e.stopPropagation()   // it will stop propogating the events and it will not go on outside element event i.e. ul
+    })  // by default false
+
+
+    //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    // preventDefault :- it is used to prevent the default event of the element
+    document.getElementById("google").addEventListener('click', function(e){
+        e.preventDefault()
+        console.log("google clicked");
+        e.stopPropagation()
+    },false)
+
+</script>
+
+
+</html>
